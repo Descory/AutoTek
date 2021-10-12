@@ -264,6 +264,25 @@ class api extends Controller
         return response()->json('', 204);
     }
 
+    function getMechanikasGidai(Request $request, $gido_id)
+    {
+        if ($mechaniko_id != 1)
+            return response()->json([
+                'message' => 'No "gidas" with id = ' . $gido_id
+            ], 404);
+
+        $body = [
+            'id' => 1,
+            'simptomai' => 'Neuzsiveda',
+            'modelis' => 'Audi A3',
+            'problema' => 'Sugedusi uzdegimo zvake',
+            'sprendimas' => 'Uzdegimo zvakes pakeitimas'
+        ];
+
+
+        return response()->json($body, 200);
+    }
+
     function checkIfJsonValid(Request $request)
     {
         if (empty($request->json()->all())) {
