@@ -10,6 +10,7 @@ class api extends Controller
     //// Gidai
     ///////////////////////////////////////
 
+
     function giduList()
     {
         $obj = [
@@ -264,11 +265,11 @@ class api extends Controller
         return response()->json('', 204);
     }
 
-    function getMechanikasGidai(Request $request, $gido_id)
+    function getMechanikasGidai(Request $request, $mechaniko_id)
     {
         if ($mechaniko_id != 1)
             return response()->json([
-                'message' => 'No "gidas" with id = ' . $gido_id
+                'message' => 'No "gidas" with id = ' . $mechaniko_id
             ], 404);
 
         $body = [
