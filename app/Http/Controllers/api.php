@@ -10,6 +10,9 @@ class api extends Controller
     //// Gidai
     ///////////////////////////////////////
 
+    private $mechanikai = 1;
+    private $gidai = 1;
+    private $automobiliai = 1;
 
     function giduList()
     {
@@ -99,7 +102,12 @@ class api extends Controller
             return response()->json([
                 'message' => 'No "gidas" with id = ' . $gido_id,
             ], 404);
-
+        else if($gidai != 1){
+            return response()->json([
+                    'message' => 'No "gidas" with id = ' . $gido_id,
+                ], 404);
+        }
+        $gidai = 0;
         return response()->json('', 204);
     }
 
@@ -269,7 +277,7 @@ class api extends Controller
     {
         if ($mechaniko_id != 1)
             return response()->json([
-                'message' => 'No "gidas" with id = ' . $mechaniko_id
+                'message' => 'No "mechanikas" with id = ' . $mechaniko_id
             ], 404);
 
         $body = [
