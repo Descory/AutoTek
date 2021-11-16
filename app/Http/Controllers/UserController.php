@@ -23,8 +23,6 @@
 
             try {
                 if (! $token = JWTAuth::attempt($credentials)) {
-                    return response()->json($credentials, 200);
-                    $newToken = JWTAuth::parseToken()->refresh();
                     return response()->json(['error' => 'invalid_credentials'], 400);
                 }
             } catch (JWTException $e) {
