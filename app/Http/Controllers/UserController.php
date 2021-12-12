@@ -13,12 +13,6 @@
     {
         public function authenticate(Request $request)
         {
-            if (!$this->checkIfJsonValid($request) || $request->getContentType() != "json") {
-                return response()->json([
-                    'message' => 'The request is not a valid JSON.',
-                ], 400);
-            }
-
             $credentials = $request->only('email', 'password');
 
             try {
@@ -29,17 +23,14 @@
                 return response()->json(['error' => 'could_not_create_token'], 500);
             }
 
-            return response()->json(compact('token'));
+            $user = User::Where('email', $request->only('email'))->get();
+            $datas[] = [compact('token'), $user];
+            return response()->json($datas);
         }
 
         public function register(Request $request)
         {
 
-            if (!$this->checkIfJsonValid($request) || $request->getContentType() != "json") {
-                return response()->json([
-                    'message' => 'The request is not a valid JSON.',
-                ], 400);
-            }
                 $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
