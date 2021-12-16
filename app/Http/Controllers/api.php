@@ -309,7 +309,7 @@ class api extends Controller
                     'message' => 'The request is not a valid JSON.',
                 ], 400);
             }
-            $prb = User::Where('id', $problemos_id)->get();
+            $prb = Problema::Where('id', $problemos_id)->get();
             if ($prb->count() == 0)
                 return response()->json([
                     'message' => 'No "problema" with id = ' . $problemos_id
@@ -384,7 +384,7 @@ class api extends Controller
                     'message' => 'The request is not a valid JSON.',
                 ], 400);
             }
-            $smp = User::Where('id', $simptomo_id)->get();
+            $smp = Simptomas::Where('id', $simptomo_id)->get();
             if ($smp->count() == 0)
                 return response()->json([
                     'message' => 'No "simptomas" with id = ' . $simptomo_id
